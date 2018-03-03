@@ -6,9 +6,8 @@ from savemymo.utils import pretty_date
 
 
 class Expense(models.Model):
-    id = models.CharField(max_length=32,
-                          default=uuid.uuid4().hex,
-                          null=False,
+    id = models.UUIDField(default=uuid.uuid4,
+                          editable=False,
                           primary_key=True)
     amount = models.DecimalField(max_digits=12,
                                  decimal_places=2,

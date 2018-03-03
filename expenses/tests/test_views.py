@@ -16,9 +16,9 @@ class HomePageTest(TestCase):
 class NewExpenseTest(TestCase):
 
     def test_add_new_expense_and_check_if_appear_in_latest_expenses_list(self):
-        self.client.post('/expenses/new', data={'amount': 10,
-                                                'short_description': 'Luz',
-                                                })
+        response = self.client.post('/expenses/new', data={'amount': 10,
+                                                           'short_description': 'Luz',
+                                                           })
         new_expense = Expense.objects.first()
         register_date = datetime.utcnow()  # Just set for tests propose because the model save now as default
 
@@ -29,4 +29,5 @@ class NewExpenseTest(TestCase):
         self.assertEqual(new_expense.register_date.hour, register_date.hour)
         self.assertEqual(new_expense.register_date.minute, register_date.minute)
         self.assertEqual(pretty_date(new_expense.register_date), pretty_date(register_date))
+        self.assertRedirects(response, '/')
 

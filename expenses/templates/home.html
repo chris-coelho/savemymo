@@ -3,8 +3,7 @@
 {% block content %}
 <h2 class="mt-5">Expenses <small>register a new expense right now</small></h2>
 <div class="form-size">
-    <form id="new_expense_form" method="post" action="{% url 'new_expense' %}">
-        {% csrf_token %}
+    <form id="new_expense_form" method="POST" action="{% url 'new_expense' %}">{% csrf_token %}
 
         <div class="form-group">
             <label for="amount">Amount</label>

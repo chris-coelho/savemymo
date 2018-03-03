@@ -8,12 +8,6 @@ def home_page(request):
 
 
 def new_expense(request):
-    if request.method == 'POST':
-        Expense.objects.create(amount=request.POST['amount'],
-                               short_description=request.POST['short_description'])
-        return redirect('/')
-
-
-def view_expense(request):
-    pass
-
+    Expense.objects.create(amount=request.POST['amount'],
+                           short_description=request.POST['short_description'])
+    return redirect('/')
