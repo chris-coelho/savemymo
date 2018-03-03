@@ -30,4 +30,3 @@ class NewExpenseTest(TestCase):
         self.assertEqual(new_expense.register_date.minute, register_date.minute)
         self.assertEqual(pretty_date(new_expense.register_date), pretty_date(register_date))
         self.assertRedirects(response, '/')
-

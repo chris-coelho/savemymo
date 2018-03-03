@@ -48,6 +48,7 @@ class NewExpenseTest(FunctionalTest):
 
 @skip('Not implemented yet')
 class NewExpenseValidationsTest(FunctionalTest):
+
     def test_valid_amount(self):
         # Brandon type 100.25 as expense amount and pass for the next field
         pass

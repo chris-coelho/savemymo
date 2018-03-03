@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 from django.utils import timezone
-
 from savemymo.utils import pretty_date
 
 

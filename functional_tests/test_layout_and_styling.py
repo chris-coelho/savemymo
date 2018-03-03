@@ -2,7 +2,6 @@ from functional_tests.base import FunctionalTest
 
 
 class LayoutAndStylingTest(FunctionalTest):
-
     """
     GIVEN I am getting the homepage
     WHEN I got it
@@ -26,3 +25,7 @@ class LayoutAndStylingTest(FunctionalTest):
 
         # Brandon sees the confirm button
         self.wait_for(lambda: self.browser.find_element_by_id('confirm_button'))
+
+        # The latest expense list should appear empty if no expenses found to the last 3 days
+        body_content = self.browser.find_element_by_tag_name('body')
+        self.assertIn('No expenses found!', body_content.text)

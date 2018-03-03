@@ -7,7 +7,7 @@
 
         <div class="form-group">
             <label for="amount">Amount</label>
-                <input type="number" class="form-control" id="amount" name="amount" aria-describedby="amount-help"
+            <input type="number" class="form-control" id="amount" name="amount" aria-describedby="amount-help"
                    placeholder="0.00">
             <small id="amount-help" class="form-text text-muted">Expense amount</small>
         </div>
@@ -23,19 +23,19 @@
 </div>
 
 <h3 class="mt-5">Latest expenses <small>since 3 days ago</small></h3>
-{% if latest_expenses %}
-    <div class="list-group" id="latest_expenses_list">
-        {% for expense in latest_expenses %}
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h4 class="mb-1">{{ expense.amount }}</h4>
-                    <small class="text-muted">{{ expense.pretty_date }}</small>
-                </div>
-                <p class="mb-1">{{ expense.short_description }}</p>
-            </a>
-        {% endfor %}
-    </div>
-{% else %}
-    <p class="lead text-secondary">No expenses found!</p>
-{% endif %}
+    {% if latest_expenses %}
+        <div class="list-group" id="latest_expenses_list">
+            {% for expense in latest_expenses %}
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">{{ expense.amount }}</h4>
+                        <small class="text-muted">{{ expense.pretty_date }}</small>
+                    </div>
+                    <p class="mb-1">{{ expense.short_description }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="lead text-secondary">No expenses found!</p>
+    {% endif %}
 {% endblock %}
