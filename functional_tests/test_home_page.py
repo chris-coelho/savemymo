@@ -46,13 +46,13 @@ class NewExpenseTest(FunctionalTest):
         self.assertIn(pretty_date(register_date), list_group.text)
 
 
-@skip('Not implemented yet')
 class NewExpenseValidationsTest(FunctionalTest):
 
-    def test_valid_amount(self):
-        # Brandon type 100.25 as expense amount and pass for the next field
-        pass
-
+    """
+    GIVEN I am filing out the form with a invalid amount
+    WHEN I press confirm
+    THEN I want that validate if its a number greater then zero.
+    """
     def test_invalid_amount(self):
         # Brandon leave the field in blank
         # Brandon type 0 as expense amount

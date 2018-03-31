@@ -1,13 +1,23 @@
 from django.shortcuts import render, redirect
-from expenses.models import Expense
+
+from .forms import ExpenseHomeForm
+from .models import Expense
 
 
 def home_page(request):
+    form = ExpenseHomeForm()
     latest_expenses = Expense.get_latest_expenses()
-    return render(request, 'home.html', {'latest_expenses': latest_expenses})
+    return render(request, 'home.html', {'form': form,
+                                         'latest_expenses': latest_expenses})
 
 
 def new_expense(request):
-    Expense.objects.create(amount=request.POST['amount'],
-                           short_description=request.POST['short_description'])
-    return redirect('/')
+    form = ExpenseHomeForm(data=request.POST)
+    latest_expenses = Expense.get_latest_expenses()
+
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+
+    return render(request, 'home.html', {'form': form,
+                                         'latest_expenses': latest_expenses})

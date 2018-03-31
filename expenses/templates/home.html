@@ -3,19 +3,28 @@
 {% block content %}
 <h2 class="mt-5">Expenses <small>register a new expense right now</small></h2>
 <div class="form-size">
-    <form id="new_expense_form" method="POST" action="{% url 'new_expense' %}">{% csrf_token %}
+    <form id="new_expense_form" method="POST" action="{% url 'new_expense' %}">
+        {% csrf_token %}
+
+        {% if form.errors %}
+           <div class="form-group has-error">
+               <div class="help-block">{{ form.errors }}</div>
+           </div>
+        {% endif %}
 
         <div class="form-group">
             <label for="amount">Amount</label>
-            <input type="number" class="form-control" id="amount" name="amount" aria-describedby="amount-help"
-                   placeholder="0.00">
+            <input type="text" class="form-control" id="amount" name="amount" aria-describedby="amount-help"
+                   placeholder="0.00"
+                   value="{{ form.amount.value|default_if_none:'' }}">
             <small id="amount-help" class="form-text text-muted">Expense amount</small>
         </div>
 
         <div class="form-group">
             <label for="short_description">Description</label>
                 <input type="text" class="form-control" id="short_description" name="short_description"
-                       placeholder="enter with a short description">
+                       placeholder="enter with a short description"
+                       value="{{ form.short_description.value|default_if_none:'' }}">
         </div>
 
         <button type="submit" class="btn btn-primary" id="confirm_button">Confirm</button>
